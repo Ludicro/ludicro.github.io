@@ -28,6 +28,8 @@ section {
 
 .section-title {
     margin-top: 0;
+    color: var(--primary-green);
+    text-shadow: var(--primary-dark) 1px 1px;
 }
 
 
@@ -96,21 +98,88 @@ section {
 
     /* Styles for resume button */
         .resume-btn {
-            display: inline-block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             background-color: var(--primary-green);
             color: var(--text-light);
             padding: 12px 24px;
             text-decoration: none;
+            text-shadow:  var(--primary-medium) 1px 1px;
             border-radius: 4px;
-            margin: 20px 0;
+            margin: 20px 45%;
             font-weight: bold;
         }
         
         .resume-btn:hover {
             background-color: var(--accent-hover);
             color: var(--text-light);
+            text-shadow:  var(--primary-medium) 2px 2px;
         }
     
+
+/* Styles for Experience section */
+.company {
+    color: var(--text-light);
+    text-shadow: var(--primary-dark) 1px 1px;
+}
+
+/* Styles for Tools/Skills section */
+.skill-title {
+    color: var(--text-light);
+    text-shadow: var(--primary-dark) 1px 1px;
+}
+
+/* Styles for Awards section */
+.awards-section a {
+    color: var(--primary-green);
+    text-decoration: underline;
+    text-shadow: var(--primary-dark) 1px 1px;
+}
+
+.awards-section a:hover {
+    color: var(--primary-green);
+    text-decoration: underline;
+    text-shadow: var(--primary-dark) 2px 2px;
+}
+
+
+/* Styles for Repos section */
+.repos-section a {
+    color: var(--primary-green);
+    text-decoration: underline;
+    text-shadow: var(--primary-dark) 1px 1px;
+}
+
+.repos-section a:hover {
+    color: var(--primary-green);
+    text-decoration: underline;
+    text-shadow: var(--primary-dark) 2px 2px;
+}
+
+/* Styles for Testimonials section */
+.testimonial-author {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.author-name {
+    font-weight: bold;
+}
+
+.author-title {
+    font-style: italic;
+}
+
+.testimonial-text {
+    border-style: solid;
+    border-color: var(--primary-green);
+    border-width: 3px;
+    padding: 10px;
+    box-shadow: var(--primary-dark) 2px 2px 2px 2px;
+}
 
 /* Styles for the Contact section */
     /* Styles for contact form */
@@ -157,3 +226,5 @@ section {
         .submit-btn:hover {
             background-color: var(--accent-hover);
         }
+
+        
