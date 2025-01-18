@@ -29,7 +29,9 @@
                 <img src="assets/img/logo.png" alt="Resume" class="logo-image">
             </div>
             <p class="intro-text">
-                I am a Computer Information Systems (CIS) student on the Cybersecurity track at the University of Louisville. I have been involved in computer science since my early years of high school and been active in cybersecurity studied and the field for 5+ years now. I am an active member of UofL's ACM student organization and a regular member of the university's CCDC team which has led to my peers and I participating in many CTF style and red/blue team style competitions. 
+                I am a Computer Information Systems (CIS) student on the Cybersecurity track at the University of Louisville as an active member of UofL's ACM student organization and a regular member of the university's CCDC team. 
+                <br><br>
+                I have been involved in computer science since my early years of high school and been active in cybersecurity studied and the field for 5+ years now along with participating in many CTF style and red/blue team style competitions. 
             </p>
             <a href="LukeLevequeResume-GitHub.pdf" class="resume-btn">Resume</a>
         </div>
@@ -119,7 +121,32 @@
 
     <section id="contact" class="contact-section">
         <h2 class="section-title">Contact Me</h2>
-        <!-- Contact content -->
+        <div class="contact-container">
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <input type="text" id="subject" name="subject" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" class="form-input" rows="5" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
     </section>
+    
 </body>
 </html>

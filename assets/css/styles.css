@@ -1,8 +1,41 @@
+:root {
+    /* Primary Colors */
+    --primary-green: #04AA6D;
+    --primary-dark: #333333;
+    --primary-medium: #888888;
+    --primary-light: #F1F1F1;
+    
+    /* Accent Colors */
+    --accent-hover: #038857;
+    --accent-light: #F1F1F1;
+    
+    /* Text Colors */
+    --text-light: #FFFFFF;
+    --text-dark: #111111;
+}
+
+body {
+    margin-top: 60px;
+    padding-top: 20px;
+    background-color: var(--primary-medium);
+    color: var(--text-dark);
+}
+
+section {
+    padding-top: 10px;
+    scroll-margin-top: 60px;
+}
+
+.section-title {
+    margin-top: 0;
+}
+
+
 /* Styles for the navigation bar */
 
     /* Add a black background color to the top navigation */
     .topnav {
-        background-color: #333;
+        background-color: var(--primary-dark);
         overflow: hidden;
         position: fixed; /* Makes the nav bar stick */
         top: 0; /* Positions it at the top */
@@ -17,7 +50,7 @@
     .topnav a {
         float: left;
         display: block;
-        color: #f2f2f2;
+        color: var(--text-light);
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
@@ -26,14 +59,14 @@
 
     /* Change the color of links on hover */
     .topnav a:hover {
-        background-color: #ddd;
+        background-color: var(--accent-hover);
         color: black;
     }
 
     /* Add an active class to highlight the current page */
     .topnav a.active {
-        background-color: #04AA6D;
-        color: white;
+        background-color: var(--primary-green);
+        color: var(--text-light);
     }
 
     /* Hide the link that should open and close the topnav on small screens */
@@ -41,25 +74,86 @@
         display: none;
     }
 
-/* Styles for the main content */
-    body {
-        margin-top: 60px; /* Adjust this value based on your navbar height */
-        padding-top: 20px;
+/* Styles for the home content */
+    .home-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
     }
 
-    .resume-btn {
-        display: inline-block;
-        background-color: #04AA6D;
-        color: white;
-        padding: 12px 24px;
-        text-decoration: none;
-        border-radius: 4px;
-        margin: 20px 0;
-        font-weight: bold;
+    .intro-text {
+        font-size: 16px;
+        text-align: center;
     }
-    
-    .resume-btn:hover {
-        background-color: #038857;
-        color: white;
+
+    .header-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
+
+    /* Styles for resume button */
+        .resume-btn {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: var(--text-light);
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        
+        .resume-btn:hover {
+            background-color: var(--accent-hover);
+            color: var(--text-light);
+        }
     
+
+/* Styles for the Contact section */
+    /* Styles for contact form */
+        .contact-section {
+            align-self: center;
+        }
+
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-input {
+            padding: 10px;
+            border: 1px solid var(--primary-dark);
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .submit-btn {
+            background-color: var(--primary-green);
+            color: var(--text-light);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--accent-hover);
+        }
