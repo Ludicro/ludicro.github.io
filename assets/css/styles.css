@@ -15,10 +15,10 @@
 }
 
 body {
-    margin-top: 60px;
+    margin: 0px;
     padding-top: 20px;
     background-color: var(--primary-medium);
-    color: var(--text-dark);
+    color: var(--text-light);
 }
 
 section {
@@ -30,6 +30,7 @@ section {
     margin-top: 0;
     color: var(--primary-green);
     text-shadow: var(--primary-dark) 1px 1px;
+    padding-left: 10px;
 }
 
 
@@ -39,12 +40,16 @@ section {
     .topnav {
         background-color: var(--primary-dark);
         overflow: hidden;
-        position: fixed; /* Makes the nav bar stick */
+        position: sticky; /* Makes the nav bar stick */
         top: 0; /* Positions it at the top */
         left: 0;
         right: 0;
         width: 100%; /* Full width */
         z-index: 1000; /* Keeps it above other content */
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
     }
 
 
@@ -85,18 +90,44 @@ section {
 
     }
 
-    .intro-text {
-        font-size: 20px;
-        text-align: center;
+    .header-container {
+        display: flex;
+        padding: 20px;
+    }
+        
+    .header-logo {
+        flex: 0 0 auto;
     }
 
-    .header-logo {
+    .header-content {
+        flex: 1;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        flex-direction: column;
+        padding-left: 30px;
+    }
+
+    .header-content h1 {
+        color: var(--primary-green);
+        text-shadow: var(--primary-dark) 1px 1px;
+        font-size: 55px;
+        text-decoration: underline wavy;
+        text-decoration-thickness: 2px;
+    }
+
+    .header-content p {
+        color: var(--text-light);
+        text-shadow: var(--primary-dark) 1px 1px;
+        font-size: 20px;
+        margin-top: -10px;
     }
 
     /* Styles for resume button */
+        .resume-btn-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: -50px;
+        }
         .resume-btn {
             display: flex;
             justify-content: center;
@@ -107,8 +138,10 @@ section {
             text-decoration: none;
             text-shadow:  var(--primary-medium) 1px 1px;
             border-radius: 4px;
-            margin: 20px 45%;
+            margin: 20px auto;
             font-weight: bold;
+            min-width: 100px; /* Reduced from 120px */
+            max-width: 100px; /* Added max-width to control horizontal length */
         }
         
         .resume-btn:hover {
