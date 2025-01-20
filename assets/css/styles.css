@@ -16,7 +16,6 @@
 
 body {
     margin: 0px;
-    padding-top: 20px;
     background-color: var(--primary-dark);
     color: var(--text-light);
 }

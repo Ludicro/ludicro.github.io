@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const sectionHeight = section.clientHeight;  // Height of the section
                 
                 // Check if scrolled into this section
-                if (window.scrollY >= (sectionTop - sectionHeight / 3)) {
+                if (window.scrollY >= (sectionTop - 100)) {
                     current = section.getAttribute('id');
                     // console.log('In section:', current);
                 }
