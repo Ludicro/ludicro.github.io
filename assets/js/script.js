@@ -6,11 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to update active navigation link based on scroll position
     function updateActiveSection() {
         let current = '';
-        
+
         // If scrolled near the top, set current section to 'home'
         if (window.scrollY <= 100) {
             current = 'home';
-            // console.log('At top, current:', current);
         } else {
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;  // Distance from top of the page
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Check if scrolled into this section
                 if (window.scrollY >= (sectionTop - 100)) {
                     current = section.getAttribute('id');
-                    // console.log('In section:', current);
                 }
             });
         }
@@ -41,17 +39,39 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', updateActiveSection);
 
     // ======= Skill Slider Functionality =======
-
+    
+    // Select the slider container and all dots
     const slider = document.querySelector('.skills-slider');
-    const cards = document.querySelectorAll('.skill-card');
+    const dots = document.querySelectorAll('.dot');
     let index = 0;  // Track the current slide index
 
+    // Function to move to the next slide automatically
     function nextSlide() {
-        index++;
-        if (index >= cards.length) index = 0;  // Loop back to the first card if end is reached
-        slider.style.transform = `translateX(-${index * 100}%)`;  // Move slider to show next card
+        index++;  // Move to the next slide
+        if (index >= dots.length) index = 0;  // Loop back to first slide if reached end
+        updateSlider();
     }
 
+    // Function to navigate to a specific slide when dot is clicked
+    function goToSlide(slideIndex) {
+        index = slideIndex;  // Set index to the selected slide
+        updateSlider();  // Update slider position
+
+        // Restart auto-slide after manual interaction
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 3000);
+    }
+
+    // Function to update the slider position and active dot
+    function updateSlider() {
+        slider.style.transform = `translateX(-${index * 100}%)`;  // Move the slider
+
+        // Remove active class from all dots, then add it to the current one
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[index].classList.add('active');
+    }
+
+    // Set interval to auto-slide every 3 seconds
     let slideInterval = setInterval(nextSlide, 3000);
 
     // Pause auto-slide when the user hovers over the slider
@@ -59,4 +79,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Resume auto-slide when the user stops hovering over the slider
     slider.addEventListener('mouseleave', () => slideInterval = setInterval(nextSlide, 3000));
+
+    // Add click event listeners to each dot for manual navigation
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => goToSlide(i));
     });
+
+    // Initialize the first dot as active
+    dots[index].classList.add('active');
+});
