@@ -152,65 +152,63 @@ section {
     
 
 /* Styles for Experience section */
-.company {
-    color: var(--text-light);
-    text-shadow: var(--primary-dark) 1px 1px;
-}
+    .company {
+        color: var(--text-light);
+        text-shadow: var(--primary-dark) 1px 1px;
+    }
 
 /* Styles for Tools/Skills section */
-.skill-title {
-    color: var(--text-light);
-    text-shadow: var(--primary-dark) 1px 1px;
-}
+    .skill-title {
+        color: var(--text-light);
+        text-shadow: var(--primary-dark) 1px 1px;
+    }
 
-.skills-slider-wrapper {
-    overflow: hidden;  /* Prevent horizontal scrolling */
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-}
+    .skills-slider-wrapper {
+        overflow: hidden;  /* Prevent horizontal scrolling */
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+    }
 
-.skills-slider {
-    display: flex;
-    width: 100%;  /* Ensure slider container doesn't overflow */
-    transition: transform 0.5s ease-in-out;
-}
+    .skills-slider {
+        display: flex;
+        width: 100%;  /* Ensure slider container doesn't overflow */
+        transition: transform 0.5s ease-in-out;
+    }
 
-.skill-card {
-    flex: 0 0 100%;  /* Each card takes full width of the container */
-    box-sizing: border-box;
-    padding: 20px;
-    background: var(--primary-dark);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    text-align: center;
-    border-radius: 10px;
-    opacity: 1;
-    transition: opacity 0.3s ease-in-out;
-}
+    .skill-card {
+        flex: 0 0 100%;  /* Each card takes full width of the container */
+        box-sizing: border-box;
+        padding: 20px;
+        background: var(--primary-dark);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        text-align: center;
+        border-radius: 10px;
+        opacity: 1;
+        transition: opacity 0.3s ease-in-out;
+    }
 
-.skill-card h3 {
-    color: var(--primary-green);
-    margin-bottom: 10px;
-}
+    .skill-card h3 {
+        color: var(--primary-green);
+        margin-bottom: 10px;
+    }
 
-.skill-card p {
-    color: var(--text-light);
-    font-size: 1.1rem;
-}
+    .skill-card p {
+        color: var(--text-light);
+        font-size: 1.1rem;
+    }
 
-/* Hover effect for skill cards */
+    /* Hover effect for skill cards */
+    .skill-card h3,
+    .skill-card p {
+        transition: transform 0.3s ease-in-out;  /* Added transition to text */
+    }
 
-.skill-card h3,
-.skill-card p {
-    transition: transform 0.3s ease-in-out;  /* Added transition to text */
-}
-
-/* Hover effect for skill cards' text */
-.skill-card:hover h3,
-.skill-card:hover p {
-    transform: translateY(-5px);  /* Slightly move the text up */
-}
+    .skill-card:hover h3,
+    .skill-card:hover p {
+        transform: translateY(-5px);  /* Slightly move the text up */
+    }
 
 
 
