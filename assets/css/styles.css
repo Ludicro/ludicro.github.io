@@ -17,7 +17,7 @@
 body {
     margin: 0px;
     padding-top: 20px;
-    background-color: var(--primary-medium);
+    background-color: var(--primary-dark);
     color: var(--text-light);
 }
 
@@ -30,7 +30,7 @@ section {
     margin-top: 0;
     color: var(--primary-green);
     text-shadow: var(--primary-dark) 1px 1px;
-    padding-left: 10px;
+    text-align: center;
 }
 
 
@@ -38,7 +38,7 @@ section {
 
     /* Add a black background color to the top navigation */
     .topnav {
-        background-color: var(--primary-dark);
+        background-color: var(--primary-medium);
         overflow: hidden;
         position: sticky; /* Makes the nav bar stick */
         top: 0; /* Positions it at the top */
@@ -58,6 +58,7 @@ section {
         float: left;
         display: block;
         color: var(--text-light);
+        text-shadow: var(--text-dark) 1px 1px;
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
@@ -67,7 +68,8 @@ section {
     /* Change the color of links on hover */
     .topnav a:hover {
         background-color: var(--accent-hover);
-        color: black;
+        color: var(--text-dark);
+        text-shadow: var(--text-light) 1px 1px;
     }
 
     /* Add an active class to highlight the current page */
@@ -163,54 +165,55 @@ section {
         text-shadow: var(--primary-dark) 1px 1px;
     }
 
-    .skills-slider-wrapper {
-        overflow: hidden;  /* Prevent horizontal scrolling */
-        width: 100%;
-        max-width: 800px;
-        margin: 0 auto;
-        position: relative;
-    }
+    /* Styles for Skills slider */
+        .skills-slider-wrapper {
+            overflow: hidden;  /* Prevent horizontal scrolling */
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
 
-    .skills-slider {
-        display: flex;
-        width: 100%;  /* Ensure slider container doesn't overflow */
-        transition: transform 0.5s ease-in-out;
-    }
+        .skills-slider {
+            display: flex;
+            width: 100%;  /* Ensure slider container doesn't overflow */
+            transition: transform 0.5s ease-in-out;
+        }
 
-    .skill-card {
-        flex: 0 0 100%;  /* Each card takes full width of the container */
-        box-sizing: border-box;
-        padding: 20px;
-        background: var(--primary-dark);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        text-align: center;
-        border-radius: 10px;
-        opacity: 1;
-        transition: opacity 0.3s ease-in-out;
-    }
+        .skill-card {
+            flex: 0 0 100%;  /* Each card takes full width of the container */
+            box-sizing: border-box;
+            padding: 20px;
+            background: var(--primary-medium);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+            border-radius: 10px;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+        }
 
-    .skill-card h3 {
-        color: var(--primary-green);
-        margin-bottom: 10px;
-    }
+        .skill-card h3 {
+            color: var(--primary-green);
+            text-shadow: var(--primary-dark) 1px 1px;
+            margin-bottom: 10px;
+        }
 
-    .skill-card p {
-        color: var(--text-light);
-        font-size: 1.1rem;
-    }
+        .skill-card p {
+            color: var(--text-light);
+            text-shadow: var(--text-dark) 1px 1px;
+            font-size: 1.1rem;
+        }
 
-    /* Hover effect for skill cards */
-    .skill-card h3,
-    .skill-card p {
-        transition: transform 0.3s ease-in-out;  /* Added transition to text */
-    }
+        /* Hover effect for skill cards */
+        .skill-card h3,
+        .skill-card p {
+            transition: transform 0.3s ease-in-out;  /* Added transition to text */
+        }
 
-    .skill-card:hover h3,
-    .skill-card:hover p {
-        transform: translateY(-5px);  /* Slightly move the text up */
-    }
-
-
+        .skill-card:hover h3,
+        .skill-card:hover p {
+            transform: translateY(-5px);  /* Slightly move the text up */
+        }
 
 
 /* Styles for Awards section */
