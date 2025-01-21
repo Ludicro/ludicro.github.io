@@ -23,7 +23,7 @@ body {
 section {
     padding-top: 10px;
     scroll-margin-top: 60px;
-    margin-bottom: 30px;
+    margin-top: 20px;
 }
 
 .section-title {
@@ -154,10 +154,122 @@ section {
     
 
 /* Styles for Experience section */
-    .company {
-        color: var(--text-light);
-        text-shadow: var(--primary-medium) 1px 1px;
+    /* Work Experience */
+        /* Timeline layout styling */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Each timeline item (company) */
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        /* Icon container for each timeline event */
+        .timeline-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: var(--text-light);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Experience details container */
+        .timeline-content {
+            background: var(--primary-medium);
+            padding: 20px;
+            border-radius: 10px;
+            margin-left: 20px;
+            flex: 1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        /* Hover effect for content */
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Timeline headings */
+        .timeline-content h3 {
+            color: var(--primary-green);
+            text-shadow: var(--primary-dark) 1px 1px;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Timeline text */
+        .timeline-content p {
+            color: var(--text-light);
+            text-shadow: var(--text-dark) 1px 1px;
+            margin: 5px 0 0;
+            font-size: 18px;
+        }
+    
+    /* General Experience */
+    /* Container for the general experience section */
+    .general-experience {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        max-width: 800px;
+        margin: 0 auto;
     }
+
+    /* Individual experience item */
+    .experience-item {
+        display: flex;
+        align-items: center;
+        background: var(--primary-medium);
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    /* Hover effect */
+    .experience-item:hover {
+        transform: translateY(-5px);
+    }
+
+    /* Icon styling inside green circle */
+    .experience-icon {
+        width: 50px;
+        height: 50px;
+        background-color: var(--primary-green);
+        color: var(--text-light);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin-right: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Experience text styling */
+    .experience-item p {
+        color: var(--text-light);
+        text-shadow: var(--text-dark) 1px 1px;
+        font-size: 18px;
+        margin: 0;
+    }
+    
+
 
 /* Styles for Tools/Skills section */
     .skill-title {
@@ -292,6 +404,10 @@ section {
     border-width: 3px;
     padding: 10px;
     box-shadow: var(--primary-dark) 2px 2px 2px 2px;
+    gap: 15px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 10px;
 }
 
 /* Styles for the Contact section */
