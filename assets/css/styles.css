@@ -349,25 +349,118 @@ section {
 
 
 /* Styles for Awards section */
+
 .awards-section a {
     color: var(--primary-green);
     text-decoration: underline;
-    text-shadow: var(--primary-medium) 1px 1px;
-    display: inline-block;  /* Ensures transform works properly */
+    text-shadow: var(--primary-dark) 1px 1px;
+    display: inline-block;  
     transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
 
 .awards-section a:hover {
     color: var(--primary-green);
     text-decoration: underline;
-    text-shadow: var(--primary-medium) 2px 2px;
-    transform: translateY(-2px);  /* Move link up slightly */
-    text-shadow: var(--primary-medium) 1px 1px;
+    transform: translateY(-2px); 
+    text-shadow: var(--primary-dark) 1px 1px;
 }
 
+/* Awards grid layout */
+.awards-grid {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
 
+/* Award card styles */
+.award-card {
+    flex: 1 1 calc(33.33% - 20px);
+    background: var(--primary-medium);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
 
+/* Expand the selected card to full width when active */
+.award-card.expanded {
+    flex: 1 1 100%;
+    z-index: 10;
+}
 
+/* Hide non-selected cards */
+.award-card:not(.expanded) {
+    filter: blur(0); /* Remove blurring effect if present */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Award icon styles */
+.award-icon {
+    font-size: 50px;
+    background-color: var(--primary-green);
+    border-radius: 50%;
+    padding: 20px;
+    color: var(--text-light);
+    display: inline-block;
+}
+
+/* Award content styles */
+.award-content h3 {
+    color: var(--primary-green);
+    text-shadow: var(--text-dark) 1px 1px;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.award-content p {
+    color: var(--text-light);
+    text-shadow: var(--text-dark) 1px 1px;
+    font-size: 18px;
+}
+
+.award-link {
+    color: var(--primary-green);
+    text-decoration: underline;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+
+.award-link:hover {
+    color: var(--accent-hover);
+}
+
+/* Award details (initially hidden) */
+.award-details {
+    display: none;
+    text-align: left;
+    margin-top: 15px;
+    text-shadow: var(--text-dark) 1px 1px;
+}
+
+.award-card.expanded .award-details {
+    display: block;
+}
+
+/* Hide details in non-expanded state */
+.award-card:not(.expanded) .award-details {
+    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .award-card {
+        flex: 1 1 100%;
+    }
+}
 
 
 /* Styles for Repos section */
@@ -407,7 +500,7 @@ section {
     border-color: var(--primary-green);
     border-width: 3px;
     padding: 10px;
-    box-shadow: var(--primary-dark) 2px 2px 2px 2px;
+    box-shadow: var(--primary-medium) 2px 2px;
     gap: 15px;
     max-width: 800px;
     margin: 0 auto;

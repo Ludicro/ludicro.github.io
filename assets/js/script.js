@@ -38,6 +38,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add scroll event listener to update active section dynamically
     window.addEventListener('scroll', updateActiveSection);
 
+
+
+
+
     // ======= Skill Slider Functionality =======
     
     // Select the slider container and all dots
@@ -87,4 +91,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize the first dot as active
     dots[index].classList.add('active');
+
+
+
+    // Award Card Functionality
+    // Function to expand/collapse the selected award card
+    function expandCard(cardId) {
+        const allCards = document.querySelectorAll('.award-card');
+        const selectedCard = document.getElementById(cardId);
+
+        // Toggle expansion state
+        if (selectedCard.classList.contains('expanded')) {
+            selectedCard.classList.remove('expanded');
+            allCards.forEach(card => card.classList.remove('inactive'));
+        } else {
+            // Collapse other cards and expand the selected one
+            allCards.forEach(card => {
+                card.classList.remove('expanded', 'inactive');
+                if (card.id !== cardId) {
+                    card.classList.add('inactive');
+                }
+            });
+            selectedCard.classList.add('expanded');
+        }
+    }
+
+    // Add click event listener to ensure functionality
+    document.querySelectorAll('.award-card').forEach(card => {
+        card.addEventListener('click', function() {
+            expandCard(this.id);
+        });
+    });
+
+
 });
