@@ -38,10 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add scroll event listener to update active section dynamically
     window.addEventListener('scroll', updateActiveSection);
 
-
-
-
-
     // ======= Skill Slider Functionality =======
     
     // Select the slider container and all dots
@@ -93,8 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
     dots[index].classList.add('active');
 
 
-
-    // Award Card Functionality
+    // ======== Award Card Functionality ========
     // Function to expand/collapse the selected award card
     function expandCard(cardId) {
         const allCards = document.querySelectorAll('.award-card');

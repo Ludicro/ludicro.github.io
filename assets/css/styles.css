@@ -23,15 +23,42 @@ body {
 section {
     padding-top: 10px;
     scroll-margin-top: 60px;
-    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+section:not(.home-section) {
+    width: 70%;
+    margin: 0 auto;
 }
 
 .section-title {
-    margin-top: 0;
+    margin-top: 50px;
     color: var(--primary-green);
     text-shadow: var(--primary-medium) 1px 1px;
     text-align: center;
 }
+
+/* Full-page green sidebars behind content */
+.side-bar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 15%;
+    background-color: var(--primary-green);
+    z-index: -2;
+}
+
+/* Left bar */
+.side-bar.left {
+    left: 0;
+}
+
+/* Right bar */
+.side-bar.right {
+    right: 0;
+}
+
+
 
 
 /* Styles for the navigation bar */
@@ -91,6 +118,18 @@ section {
         justify-content: center;
         margin-bottom: 0px;
     }
+
+    .home-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 450px;
+        background-color: var(--primary-dark);
+        z-index: -1;
+    }
+    
 
     .header-container {
         display: flex;
@@ -465,20 +504,80 @@ section {
 
 
 /* Styles for Repos section */
+
 .repos-section a {
     color: var(--primary-green);
     text-decoration: underline;
-    text-shadow: var(--primary-medium) 1px 1px;
-    display: inline-block;  /* Ensures transform works properly */
+    text-shadow: var(--primary-dark) 1px 1px;
+    display: inline-block;
     transition: transform 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
 }
 
 .repos-section a:hover {
     color: var(--primary-green);
     text-decoration: underline;
-    transform: translateY(-2px);  /* Move link up slightly */
-    text-shadow: var(--primary-medium) 1px 1px;
+    transform: translateY(-2px);
+    text-shadow: var(--primary-dark) 1px 1px;
 }
+
+
+/* Repos section styling */
+.repos-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Grid layout for repository cards */
+.repo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Individual repository card */
+.repo-card {
+    background-color: var(--primary-medium);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Hover effect for cards */
+.repo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Repo title styling */
+.repo-title {
+    font-size: 22px;
+    color: var(--primary-green);
+    margin-bottom: 10px;
+}
+
+
+
+/* Repo description styling */
+.repo-description {
+    font-size: 16px;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .repo-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+    }
+}
+
+
+
+
+
 
 /* Styles for Testimonials section */
 .testimonial-author {
@@ -490,6 +589,7 @@ section {
 
 .author-name {
     font-weight: bold;
+    text-shadow: var(--accent-hover) 1px 1px;
 }
 
 .author-title {

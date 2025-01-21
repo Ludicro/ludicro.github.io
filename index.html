@@ -9,6 +9,11 @@
 </head>
 
 <body>
+
+    <div class="side-bar left"></div>
+    <div class="side-bar right"></div>
+
+
     <section id="home" class="home-section">
         <div class="header-container">
             <div class="header-logo">
@@ -37,7 +42,7 @@
         <a href="#awards">Awards</a>
         <a href="#repos">Notable Repos</a>
         <a href="#testimonials">Testimonials</a>
-        <a href="#contact">Contact</a>
+        <!--<a href="#contact">Contact</a>-->
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
         </a>
@@ -159,6 +164,11 @@
                 <span class="dot" onclick="goToSlide(2)"></span>
                 <span class="dot" onclick="goToSlide(3)"></span>
                 <span class="dot" onclick="goToSlide(4)"></span>
+                <span class="dot" onclick="goToSlide(5)"></span>
+                <span class="dot" onclick="goToSlide(6)"></span>
+                <span class="dot" onclick="goToSlide(7)"></span>
+                <span class="dot" onclick="goToSlide(8)"></span>
+                <span class="dot" onclick="goToSlide(9)"></span>
             </div>
 
         </div>
@@ -234,13 +244,29 @@
 
     <section id="repos" class="repos-section">
         <h2 class="section-title">Notable Repos</h2>
-        <ul class="repos-list">
-            <li class="repo-item"><a target="_blank" href="https://github.com/Ludicro/NCL-Public" class="repo-link">NCL Writeups</a> - A collection of writeups for the National Cyber League that utilizes various tools</li>
-            <li class="repo-item"><a target="_blank" href="https://github.com/Ludicro/GlyphForge" class="repo-link">GlyphForge</a> - A Python based GUI system made to represent D&D spells as decipherable sigils based off <a target="_blank" href="https://github.com/GorillaOfDestiny" class="repo-link">GorillaOfDestiny</a>'s spell writing guide</li>
-            <li class="repo-item"><a target="_blank" href="https://github.com/Ludicro/Ludicro-BadUSB" class="repo-link">Ludicro-BadUSB</a> - A collection of BadUSB scripts for various hardware devices</li>
-            <li class="repo-item"><a target="_blank" href="https://github.com/Ludicro/PortSwiggerAcademy" class="repo-link">PortSwigger Academy Notes</a> - A collection of writeups for Burpsuite's PortSwigger Academy</li>
-        </ul>
+        <div class="repo-grid">
+            <div class="repo-card">
+                <h3 class="repo-title"><a target="_blank" href="https://github.com/Ludicro/NCL-Public" class="repo-link">NCL Writeups</a></h3>
+                <p class="repo-description">A collection of writeups for the National Cyber League that utilizes various tools.</p>
+            </div>
+    
+            <div class="repo-card">
+                <h3 class="repo-title"><a target="_blank" href="https://github.com/Ludicro/GlyphForge" class="repo-link">GlyphForge</a></h3>
+                <p class="repo-description">A Python-based GUI system for representing D&D spells as decipherable sigils.</p>
+            </div>
+    
+            <div class="repo-card">
+                <h3 class="repo-title"><a target="_blank" href="https://github.com/Ludicro/Ludicro-BadUSB" class="repo-link">Ludicro-BadUSB</a></h3>
+                <p class="repo-description">A collection of BadUSB scripts for various hardware devices.</p>
+            </div>
+    
+            <div class="repo-card">
+                <h3 class="repo-title"><a target="_blank" href="https://github.com/Ludicro/PortSwiggerAcademy" class="repo-link">PortSwigger Academy Notes</a></h3>
+                <p class="repo-description">Writeups for Burpsuite's PortSwigger Academy.</p>
+            </div>
+        </div>
     </section>
+    
 
     <section id="testimonials" class="testimonials-section">
         <h2 class="section-title">Testimonials</h2>
@@ -268,6 +294,7 @@
         </div>
     </section>
 
+<!--
     <section id="contact" class="contact-section">
         <h2 class="section-title">Contact Me</h2>
         <div class="contact-container">
@@ -296,6 +323,7 @@
             </form>
         </div>
     </section>
+-->
     
 </body>
 </html>
