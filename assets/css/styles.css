@@ -112,8 +112,9 @@ section {
         color: var(--primary-green);
         text-shadow: var(--primary-medium) 1px 1px;
         font-size: 55px;
-        text-decoration: underline wavy;
-        text-decoration-thickness: 2px;
+        text-decoration: underline double;
+        text-decoration-thickness: 3px;
+        text-underline-offset: 3px;
     }
 
     .header-content p {
