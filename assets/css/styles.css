@@ -118,17 +118,7 @@ section:not(.home-section) {
         align-items: center;
         justify-content: center;
         margin-bottom: 0px;
-    }
-
-    .home-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 450px;
         background-color: var(--primary-dark);
-        z-index: -1;
     }
     
 
