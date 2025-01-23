@@ -499,6 +499,10 @@ section:not(.home-section) {
     }
 }
 
+.award-card:not(#ncl-card) {
+    cursor: default;
+}
+
 
 /* Styles for Repos section */
 

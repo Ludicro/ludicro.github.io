@@ -111,8 +111,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Add click event listener to ensure functionality
-    document.querySelectorAll('.award-card').forEach(card => {
+    // Modify the award card click handler
+    document.querySelectorAll('#ncl-card').forEach(card => {
         card.addEventListener('click', function() {
             expandCard(this.id);
         });
