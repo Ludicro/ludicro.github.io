@@ -33,7 +33,7 @@ section:not(.home-section) {
 }
 
 .section-title {
-    margin-top: 50px;
+    margin-top: 5%;
     color: var(--primary-green);
     text-shadow: var(--primary-medium) 1px 1px;
     text-align: center;
@@ -117,14 +117,14 @@ section:not(.home-section) {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin-bottom: 0px;
+        margin-bottom: 0%;
         background-color: var(--primary-dark);
     }
     
 
     .header-container {
         display: flex;
-        padding: 20px;
+        padding: 2%;
     }
         
     .header-logo {
@@ -135,7 +135,7 @@ section:not(.home-section) {
         flex: 1;
         display: flex;
         flex-direction: column;
-        padding-left: 30px;
+        padding-left: 2%;
     }
 
     .header-content h1 {
@@ -159,7 +159,7 @@ section:not(.home-section) {
             width: 100%;
             display: flex;
             justify-content: center;
-            margin-top: -50px;
+            margin-top: -5%;
         }
         .resume-btn {
             display: flex;
@@ -167,14 +167,14 @@ section:not(.home-section) {
             align-items: center;
             background-color: var(--primary-green);
             color: var(--text-light);
-            padding: 12px 24px;
+            padding: 1% 1%;
             text-decoration: none;
             text-shadow:  var(--primary-medium) 1px 1px;
             border-radius: 4px;
-            margin: 20px auto;
+            margin: 2% auto;
             font-weight: bold;
-            min-width: 100px; /* Reduced from 120px */
-            max-width: 100px; /* Added max-width to control horizontal length */
+            min-width: 7%; /* Reduced from 120px */
+            max-width: 7%; /* Added max-width to control horizontal length */
         }
         
         .resume-btn:hover {
@@ -189,7 +189,7 @@ section:not(.home-section) {
         /* Timeline layout styling */
         .timeline {
             position: relative;
-            max-width: 800px;
+            max-width: 80%;
             margin: 0 auto;
             padding: 20px;
         }
@@ -257,7 +257,7 @@ section:not(.home-section) {
         flex-direction: column;
         align-items: center;
         gap: 15px;
-        max-width: 800px;
+        max-width: 80%;
         margin: 0 auto;
     }
 
@@ -314,7 +314,7 @@ section:not(.home-section) {
         .skills-slider-wrapper {
             overflow: hidden;  /* Prevent horizontal scrolling */
             width: 100%;
-            max-width: 800px;
+            max-width: 85%;
             margin: 0 auto;
             position: relative;
         }
@@ -405,7 +405,7 @@ section:not(.home-section) {
     gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
-    max-width: 800px;
+    max-width: 85%;
     margin: 0 auto;
 }
 
@@ -524,7 +524,7 @@ section:not(.home-section) {
 
 /* Repos section styling */
 .repos-section {
-    max-width: 800px;
+    max-width: 80%;
     margin: 0 auto;
     text-align: center;
 }
@@ -532,15 +532,15 @@ section:not(.home-section) {
 /* Grid layout for repository cards */
 .repo-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+    gap: 4%;
+    padding: 4%;
 }
 
 /* Individual repository card */
 .repo-card {
     background-color: var(--primary-medium);
-    padding: 20px;
+    padding: 5%;
     border-radius: 10px;
     border: 3px solid var(--accent-hover);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -570,7 +570,7 @@ section:not(.home-section) {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 100%) {
     .repo-grid {
         grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
     }
@@ -583,7 +583,7 @@ section:not(.home-section) {
 
 /* Styles for Testimonials section */
 .testimonials-section {
-    max-width: 800px;
+    max-width: 80%;
     margin: 0 auto;
     text-align: center;
 }
@@ -611,7 +611,7 @@ section:not(.home-section) {
     padding: 10px;
     box-shadow: var(--primary-medium) 2px 2px;
     gap: 15px;
-    max-width: 800px;
+    max-width: 80%;
     margin: 0 auto;
     margin-top: 10px;
 }
