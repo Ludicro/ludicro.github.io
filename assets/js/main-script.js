@@ -7,9 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    function closeMobileWarning() {
+    document.querySelector('.popup-content button').addEventListener('click', function() {
         document.getElementById('mobile-warning').style.display = 'none';
-    }
+    });
     
 
 
