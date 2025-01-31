@@ -117,22 +117,4 @@ document.addEventListener('DOMContentLoaded', function() {
             expandCard(this.id);
         });
     });
-
-
-    // ======= Classwork Card Functionality =======
-    // Add click handler for classwork cards
-    const classworkCards = document.querySelectorAll('.classwork-card');
-    classworkCards.forEach(card => {
-        card.addEventListener('click', function() {
-            this.classList.toggle('expanded');
-        });
-    });
-
-    const i5Card = document.getElementById('i5-card');
-    if (i5Card) {
-        i5Card.addEventListener('click', function() {
-            this.classList.toggle('expanded');
-        });
-    }
-
 });
