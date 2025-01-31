@@ -18,6 +18,7 @@ body {
     margin: 0px;
     background-color: var(--primary-dark);
     color: var(--text-light);
+    padding-bottom: 20%;
 }
 
 section {
