@@ -1,4 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+    // ======== Mobile Popup Functionality ========
+    window.onload = function() {
+        if (window.innerWidth <= 768) {
+            document.getElementById('mobile-warning').style.display = 'block';
+        }
+    }
+    
+    function closeMobileWarning() {
+        document.getElementById('mobile-warning').style.display = 'none';
+    }
+    
+
+
+
+    // ======== Navigation Bar Functionality ========
+
     // Select all sections and navigation links
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.topnav a');
