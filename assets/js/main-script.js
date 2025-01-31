@@ -1,13 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     // ======== Mobile Popup Functionality ========
-    window.onload = function() {
-        if (window.innerWidth <= 768) {
-            document.getElementById('mobile-warning').style.display = 'block';
-        }
+    // Show warning on mobile devices
+    if (window.innerWidth <= 768) {
+        document.getElementById('mobile-warning').style.display = 'block';
     }
     
-    document.querySelector('.popup-content button').addEventListener('click', function() {
+    // Add click handler to close button
+    const closeButton = document.getElementById('close-warning-btn');
+    closeButton.addEventListener('click', function() {
         document.getElementById('mobile-warning').style.display = 'none';
     });
     
