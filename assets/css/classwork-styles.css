@@ -188,6 +188,12 @@ section:not(.home-section) {
         min-height: 800px;
     }
 
+    .classwork-grid .classwork-card.expanded.sql-a6-card {
+        min-height: 200px !important;
+    }
+    
+    
+
     .classwork-details {
         display: none;
         text-align: left;
