@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     img.src = 'assets/img/logo_greyscale.png';
 
     img.onload = function() {
-        const scale = 1;
+        const scale = .5;
         canvas.width = img.width * scale;
         canvas.height = img.height * scale;
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
