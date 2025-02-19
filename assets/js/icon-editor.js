@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const ctx = canvas.getContext('2d');
     const img = new Image();
     img.crossOrigin = "Anonymous";
-    img.src = 'assets/img/logo_highDef.png';
+    img.src = 'assets/img/logo_greyscale.png';
 
     img.onload = function() {
         const scale = 0.5;
@@ -39,19 +39,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         for(let i = 0; i < data.length; i += 4) {
-            // Border color check with tolerance
-            if(Math.abs(data[i] - 51) <= 5 && 
-               Math.abs(data[i+1] - 51) <= 5 && 
-               Math.abs(data[i+2] - 51) <= 5) {
+            // Border color check (black #000000)
+            if(data[i] === 0 && data[i+1] === 0 && data[i+2] === 0) {
                 const color = hexToRgb(borderColor);
                 data[i] = color.r;
                 data[i+1] = color.g;
                 data[i+2] = color.b;
             }
-            // Main color check with tolerance
-            if(Math.abs(data[i] - 4) <= 5 && 
-               Math.abs(data[i+1] - 170) <= 5 && 
-               Math.abs(data[i+2] - 109) <= 5) {
+            // Main color check (mid-gray #808080)
+            if(data[i] === 128 && data[i+1] === 128 && data[i+2] === 128) {
                 const color = hexToRgb(mainColor);
                 data[i] = color.r;
                 data[i+1] = color.g;
