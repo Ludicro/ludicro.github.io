@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     img.src = 'assets/img/logo_greyscale.png';
 
     img.onload = function() {
-        const scale = 0.5;
+        const scale = 1;
         canvas.width = img.width * scale;
         canvas.height = img.height * scale;
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
@@ -39,15 +39,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         for(let i = 0; i < data.length; i += 4) {
-            // Border color check (black #000000)
-            if(data[i] === 0 && data[i+1] === 0 && data[i+2] === 0) {
+            // Border color check (black #000000) with tolerance
+            if(data[i] <= 10 && data[i+1] <= 10 && data[i+2] <= 10) {
                 const color = hexToRgb(borderColor);
                 data[i] = color.r;
                 data[i+1] = color.g;
                 data[i+2] = color.b;
             }
-            // Main color check (mid-gray #808080)
-            if(data[i] === 128 && data[i+1] === 128 && data[i+2] === 128) {
+            // Main color check (mid-gray #808080) with tolerance
+            if(data[i] >= 120 && data[i] <= 136 && 
+               data[i+1] >= 120 && data[i+1] <= 136 && 
+               data[i+2] >= 120 && data[i+2] <= 136) {
                 const color = hexToRgb(mainColor);
                 data[i] = color.r;
                 data[i+1] = color.g;
