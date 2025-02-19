@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Editor</title>
+    <style>
+        .editor-container {
+            display: flex;
+            gap: 2rem;
+            padding: 20px;
+        }
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .preview {
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="editor-container">
+        <div class="controls">
+            <div>
+                <label for="borderColor">Border Color:</label>
+                <input type="color" id="borderColor" value="#333333">
+            </div>
+            <div>
+                <label for="mainColor">Main Color:</label>
+                <input type="color" id="mainColor" value="#04aa6d">
+            </div>
+            <button id="applyColors">Apply Colors</button>
+            <button id="downloadBtn">Download Modified Logo</button>
+        </div>
+        <div class="preview">
+            <canvas id="logoCanvas"></canvas>
+        </div>
+    </div>
+    <script src="assets/js/icon-editor.js"></script>
+</body>
+</html>
