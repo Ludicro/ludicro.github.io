@@ -39,20 +39,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         for(let i = 0; i < data.length; i += 4) {
-            if(data[i] === 51 && data[i+1] === 51 && data[i+2] === 51) {
+            // Border color check with tolerance
+            if(Math.abs(data[i] - 51) <= 5 && 
+               Math.abs(data[i+1] - 51) <= 5 && 
+               Math.abs(data[i+2] - 51) <= 5) {
                 const color = hexToRgb(borderColor);
                 data[i] = color.r;
                 data[i+1] = color.g;
                 data[i+2] = color.b;
             }
-            if(data[i] === 4 && data[i+1] === 170 && data[i+2] === 109) {
+            // Main color check with tolerance
+            if(Math.abs(data[i] - 4) <= 5 && 
+               Math.abs(data[i+1] - 170) <= 5 && 
+               Math.abs(data[i+2] - 109) <= 5) {
                 const color = hexToRgb(mainColor);
                 data[i] = color.r;
                 data[i+1] = color.g;
                 data[i+2] = color.b;
             }
-        }
-        
+        }        
         ctx.putImageData(imageData, 0, 0);
     });
 
