@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
         canvas.width = img.width * scale;
         canvas.height = img.height * scale;
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        console.log('Image loaded successfully');
         applyColors(); // Apply initial colors when image loads
 
         // Start continuous color updates
