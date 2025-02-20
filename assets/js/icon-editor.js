@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         canvas.width = img.width * scale;
         canvas.height = img.height * scale;
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        applyColors(); // Apply initial colors when image loads
     };
 
     function hexToRgb(hex) {
@@ -63,22 +64,13 @@ document.addEventListener('DOMContentLoaded', function() {
         } : null;
     }
 
-    document.getElementById('applyColors').addEventListener('click', function() {
+    function applyColors() {
         const borderColor = document.getElementById('borderColor').value;
         const mainColor = document.getElementById('mainColor').value;
         
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const data = imageData.data;
-        
-        // Add these logs
-        console.log('Border Color:', borderColor);
-        console.log('Main Color:', mainColor);
-        
-        // Log a sample pixel's RGB values
-        console.log('Sample Pixel RGB:', data[0], data[1], data[2]);
-        
-
 
         for(let i = 0; i < data.length; i += 4) {
             // Border color check (black #000000) with tolerance
@@ -99,7 +91,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }        
         ctx.putImageData(imageData, 0, 0);
-    });
+    }
+
+    // Add input event listeners for live updates
+    document.getElementById('borderColor').addEventListener('input', applyColors);
+    document.getElementById('mainColor').addEventListener('input', applyColors);
 
     document.getElementById('downloadBtn').addEventListener('click', function() {
         const link = document.createElement('a');
