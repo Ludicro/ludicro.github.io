@@ -4,33 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logo Editor</title>
-    <style>
-        .editor-container {
-            display: flex;
-            gap: 2rem;
-            padding: 20px;
-        }
-        .controls {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .preview {
-            border: 1px solid #ccc;
-            padding: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/logo_editor-styles.css">
 </head>
 <body>
+    
+    <div class="side-bar left"></div>
+    <div class="side-bar right"></div>
+
+    <section id="home" class="home-section">
+        <div class="header-container">
+            <div class="header-logo">
+                <img src="assets\img\logo_redesign.png" alt="Resume" class="logo-image">
+            </div>
+            <div class="header-content">
+                <h1>Luke Leveque</h1>
+                <p>
+                    This is just a fun side project for me to quickly make different color schemes for my logo without having to use Illustrator every time.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="topnav">
+        <a href="https://glyphforge.net/">Main Page</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+
     <div class="editor-container">
         <div class="controls">
             <div>
                 <label for="borderColor">Border Color:</label>
-                <input type="color" id="borderColor" value="#000000">
+                <input type="color" id="borderColor" value="#333333">
             </div>
             <div>
                 <label for="mainColor">Main Color:</label>
-                <input type="color" id="mainColor" value="#808080">
+                <input type="color" id="mainColor" value="#04AA6D">
             </div>
             <button id="applyColors">Apply Colors</button>
             <button id="downloadBtn">Download Modified Logo</button>

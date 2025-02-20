@@ -1,0 +1,178 @@
+:root {
+    /* Primary Colors */
+    --primary-green: #04AA6D;
+    --primary-dark: #333333;
+    --primary-medium: #717171;
+    --primary-light: #F1F1F1;
+    
+    /* Accent Colors */
+    --accent-hover: #038857;
+    --accent-light: #F1F1F1;
+    
+    /* Text Colors */
+    --text-light: #FFFFFF;
+    --text-dark: #111111;
+}
+
+body {
+    margin: 0px;
+    background-color: var(--primary-dark);
+    color: var(--text-light);
+}
+
+section {
+    padding-top: 10px;
+    scroll-margin-top: 60px;
+    margin-bottom: 60px;
+    /*border: 3px solid var(--accent-hover);*/
+}
+
+section:not(.home-section) {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.section-title {
+    margin-top: 5%;
+    color: var(--primary-green);
+    text-shadow: var(--primary-medium) 1px 1px;
+    text-align: center;
+}
+
+/* Full-page green sidebars behind content */
+.side-bar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 15%;
+    background-color: var(--primary-green);
+    z-index: -2;
+}
+
+/* Left bar */
+.side-bar.left {
+    left: 0;
+}
+
+/* Right bar */
+.side-bar.right {
+    right: 0;
+}
+
+/* Styles for the navigation bar */
+
+    /* Add a black background color to the top navigation */
+    .topnav {
+        background-color: var(--primary-medium);
+        overflow: hidden;
+        position: sticky; /* Makes the nav bar stick */
+        top: 0; /* Positions it at the top */
+        left: 0;
+        right: 0;
+        width: 100%; /* Full width */
+        z-index: 1000; /* Keeps it above other content */
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+    }
+
+
+    /* Style the links inside the navigation bar */
+    .topnav a {
+        float: left;
+        display: block;
+        color: var(--text-light);
+        text-shadow: var(--text-dark) 1px 1px;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    /* Change the color of links on hover */
+    .topnav a:hover {
+        background-color: var(--accent-hover);
+        color: var(--text-dark);
+        text-shadow: var(--text-light) 1px 1px;
+    }
+
+    /* Add an active class to highlight the current page */
+    .topnav a.active {
+        background-color: var(--primary-green);
+        color: var(--text-light);
+    }
+
+    /* Hide the link that should open and close the topnav on small screens */
+    .topnav .icon {
+        display: none;
+    }
+
+
+
+
+/* Styles for the home content */
+    .home-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0%;
+        background-color: var(--primary-dark);
+    }
+
+
+    .header-container {
+        display: flex;
+        padding: 2%;
+    }
+        
+    .header-logo {
+        flex: 0 0 auto;
+    }
+
+    .header-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding-left: 2%;
+    }
+
+    .header-content h1 {
+        color: var(--primary-green);
+        text-shadow: var(--primary-medium) 1px 1px;
+        font-size: 55px;
+        text-decoration: underline double;
+        text-decoration-thickness: 3px;
+        text-underline-offset: 3px;
+    }
+
+    .header-content p {
+        color: var(--text-light);
+        text-shadow: var(--primary-medium) 1px 1px;
+        font-size: 20px;
+        margin-top: -10px;
+    }
+
+
+/* Styles for the logo editor */
+    .editor-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        padding: 20px;
+    }
+    .controls {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+    }
+    .preview {
+        border: 1px solid #ccc;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+    }
