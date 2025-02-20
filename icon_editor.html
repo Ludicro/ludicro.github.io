@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logo Editor</title>
     <link rel="stylesheet" href="assets/css/logo_editor-styles.css">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
     
@@ -32,6 +33,9 @@
         </a>
     </div>
 
+    <div id="captcha-container" style="display: flex; justify-content: center; margin: 20px;">
+        <div class="cf-turnstile" data-sitekey="YOUR_SITE_KEY"></div>
+    </div>
 
     <div class="editor-container">
         <div class="controls">
