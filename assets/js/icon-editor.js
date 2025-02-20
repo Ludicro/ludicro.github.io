@@ -4,17 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const ctx = canvas.getContext('2d');
     const img = new Image();
     img.crossOrigin = "Anonymous";
-
-    // Wait for both DOM and image to be ready
-    const borderColorInput = document.getElementById('borderColor');
-    const mainColorInput = document.getElementById('mainColor');
-
     img.src = 'assets/img/logo_greyscale.png';
-
-    if (borderColorInput && mainColorInput) {
-        borderColorInput.addEventListener('input', applyColors);
-        mainColorInput.addEventListener('input', applyColors);
-    }
 
     img.onload = function() {
         const scale = .5;
@@ -23,6 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         console.log('Image loaded successfully');
         applyColors(); // Apply initial colors when image loads
+
+        // Start continuous color updates
+        setInterval(applyColors, 100); // Updates every 100ms
     };
 
     function hexToRgb(hex) {
@@ -37,15 +30,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function applyColors() {
         const borderColor = document.getElementById('borderColor').value;
         const mainColor = document.getElementById('mainColor').value;
-        console.log('Applying colors:', borderColor, mainColor);
         
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const data = imageData.data;
 
-
-        // Log the first few pixels to check values
-        console.log('First pixel values:', data[0], data[1], data[2]);
 
         for(let i = 0; i < data.length; i += 4) {
             // Border color check (black #000000) with tolerance
@@ -67,10 +56,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }        
         ctx.putImageData(imageData, 0, 0);
     }
-
-    // Add input event listeners for live updates
-    document.getElementById('borderColor').addEventListener('input', applyColors);
-    document.getElementById('mainColor').addEventListener('input', applyColors);
 
     document.getElementById('downloadBtn').addEventListener('click', function() {
         const link = document.createElement('a');
