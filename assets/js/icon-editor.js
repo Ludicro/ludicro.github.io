@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         canvas.width = img.width * scale;
         canvas.height = img.height * scale;
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        console.log('Image loaded successfully');
         applyColors(); // Apply initial colors when image loads
     };
 
@@ -67,10 +68,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function applyColors() {
         const borderColor = document.getElementById('borderColor').value;
         const mainColor = document.getElementById('mainColor').value;
+        console.log('Applying colors:', borderColor, mainColor);
         
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const data = imageData.data;
+
+
+        // Log the first few pixels to check values
+        console.log('First pixel values:', data[0], data[1], data[2]);
 
         for(let i = 0; i < data.length; i += 4) {
             // Border color check (black #000000) with tolerance
