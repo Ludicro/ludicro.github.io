@@ -1,16 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // ============ CAPTCHA ============
-    turnstile.ready(function() {
-        turnstile.render('#captcha-container', {
-            sitekey: '0x4AAAAAAA9oB3ygmlNJngYI',
-            callback: function(token) {
-                document.getElementById('editor-content').style.display = 'block';
-                document.getElementById('captcha-container').style.display = 'none';
-            },
-        });
-    });
-
-
     // ============ Logo Canvas ============
     const canvas = document.getElementById('logoCanvas');
     const ctx = canvas.getContext('2d');
