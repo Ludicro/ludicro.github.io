@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         applyColors(); // Apply initial colors when image loads
 
         // Start continuous color updates
-        setInterval(applyColors, 100); // Updates every 100ms
+        setInterval(applyColors, 5); // Updates every 5ms
     };
 
     function hexToRgb(hex) {
