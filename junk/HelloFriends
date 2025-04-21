@@ -34,4 +34,4 @@ history -d $(history 1) 2>/dev/null
 history -w /dev/null
 unset HISTFILE
 
-echo "[+] Message deployed and cleaned. Love, Ludicro 💘"
+echo "[+] Message deployed and cleaned. Love, Ludicro"
