@@ -777,3 +777,38 @@ section:not(.home-section) {
     font-size: 0.9rem;
     margin-top: 1rem;
 }
+
+
+/* Styles for status page */
+.status-engaged {
+  color: #3af26f;
+  font-weight: bold;
+}
+
+.status-disengaged {
+  color: #f24444;
+  font-weight: bold;
+}
+
+.status-error {
+  color: #cccccc;
+  font-style: italic;
+}
+
+.remote-section {
+  padding: 2rem;
+  text-align: center;
+}
+
+.remote-section .submit-btn {
+  margin-top: 12px;
+}
+
+.remote-section .repo-card {
+  margin: 1rem auto 0 auto;
+  padding: 1rem;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+  max-width: 400px;
+}
