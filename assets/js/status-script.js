@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const napToggleButton = document.getElementById("nap-toggle-button");
   const napRefreshButton = document.getElementById("nap-refresh-button");
 
+  const bikeStatusValue = document.getElementById("bike-status-value");
+  const bikeRefreshButton = document.getElementById("bike-refresh-button");
+
   async function refreshSwimStatus() {
     try {
       const res = await fetch("https://status.glyphforge.net/api/getSwimStatus");
@@ -63,9 +66,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  async function refreshBikeStatus() {
+    try {
+      const res = await fetch("https://status.glyphforge.net/api/getBikeStatus");
+      if (!res.ok) throw new Error("Failed to fetch");
+      const text = await res.text();
+      const clean = text.trim().toLowerCase();
+
+      bikeStatusValue.textContent =
+        clean === "engaged" ? "Riding" :
+        clean === "disengaged" ? "Not Riding" :
+        "Unknown";
+
+      bikeStatusValue.className =
+        clean === "engaged" ? "status-engaged" :
+        clean === "disengaged" ? "status-disengaged" :
+        "status-error";
+    } catch (err) {
+      bikeStatusValue.textContent = "Status Error";
+      bikeStatusValue.className = "status-error";
+    }
+  }
+
   swimRefreshButton.addEventListener("click", refreshSwimStatus);
   napRefreshButton.addEventListener("click", refreshNapStatus);
   napToggleButton.addEventListener("click", toggleNapStatus);
+  bikeRefreshButton.addEventListener("click", refreshBikeStatus)
 
   // Initial fetch
   refreshSwimStatus();
