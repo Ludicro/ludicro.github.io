@@ -96,4 +96,5 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initial fetch
   refreshSwimStatus();
   refreshNapStatus();
+  refreshBikeStatus();
 });
