@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function refreshNapStatus() {
     try {
-      const res = await fetch("https://status.glyphforge.net/api/napStatus");
+      const res = await fetch("https://status.glyphforge.net/api/getNapStatus");
       if (!res.ok) throw new Error("Failed to fetch");
       const text = await res.text();
       const clean = text.trim().toLowerCase();
