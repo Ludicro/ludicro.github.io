@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Status Board - Luke</title>
   <link rel="stylesheet" href="assets/css/main-styles.css">
-  <script src="assets/js/status-script.js"></script>
+  <script src="assets/js/status-script.js" defer></script>
 </head>
+
 <body>
 
   <section id="remote-status" class="remote-section">
@@ -15,6 +16,7 @@
     <div id="status-box" class="repo-card">
       <p class="repo-title">Swimming Status:</p>
       <p class="repo-description" id="swim-status-value">Loading...</p>
+      <p class="repo-description" id="swim-duration" style="display:none;"></p>
       <button class="submit-btn" id="swim-refresh-button">Check Again</button>
     </div>
   </section>
@@ -26,6 +28,7 @@
     <div id="status-box-secondary" class="repo-card">
     <p class="repo-title">Nap Status:</p>
     <p class="repo-description" id="nap-status-value">Loading...</p>
+    <p class="repo-description" id="nap-duration" style="display:none;"></p>
     <button class="submit-btn" id="nap-toggle-button">Toggle Status</button>
     <button class="submit-btn" id="nap-refresh-button">Check Again</button>
     </div>
@@ -33,6 +36,7 @@
     <div id="status-box-third" class="repo-card">
       <p class="repo-title">Bike Status:</p>
       <p class="repo-description" id="bike-status-value">Loading...</p>
+      <p class="repo-description" id="bike-duration" style="display:none;"></p>
       <button class="submit-btn" id="bike-refresh-button">Check Again</button>
     </div>
 
