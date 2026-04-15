@@ -3,7 +3,7 @@ import socket, struct, os, stat
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.settimeout(10)
-s.connect(("192.168.20.105", 9999))
+s.connect(("192.168.20.105", 9991))
 size_data = s.recv(4)
 size = struct.unpack('<I', size_data)[0]
 print(f"[+] Size: {size}")
